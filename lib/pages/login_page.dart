@@ -1,7 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'dart:ui';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:desktop/constant/theme.dart';
+import 'home_page.dart';
 
 // 登录页面
 class LoginPage extends StatefulWidget {
@@ -47,8 +48,9 @@ class _LoginPageState extends State<LoginPage> {
                         SizedBox(height: 30),
                         _commonInput(controller: _usernameController, callback: (value)=>_userName=value, lableText: "账号"),
                         _commonInput(controller: _passwordController, callback: (value)=>_passWord=value, lableText: "密码"),
-                        SizedBox(height: 30),
+                        const SizedBox(height: 30),
                         _Button1(content: "登录"),
+                        const SizedBox(height: 20),
                         _Button2(content: "没有账号？去注册")
                       ],
                     ),
@@ -60,6 +62,16 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  Future<void> Login() async {
+    Navigator.pop(context);
+    Navigator.push(context,
+      MaterialPageRoute(builder: (context) => const HomePage()),);
+  }
+
+  Future<void> SignUp() async {
+
   }
 
   Widget _commonInput({required TextEditingController controller,
@@ -93,8 +105,9 @@ class _LoginPageState extends State<LoginPage> {
           borderRadius: BorderRadius.all(Radius.circular(6)),
           color: Color(0xff163216)
         ),
-        child: Text(content, style: TextStyle(color: Color(0xfffafffa),),),
-      )
+        child: Text(content, style: TextStyle(color: Color(0xfffafffa),),)
+      ),
+      onTap: ()=>Login(),
     );
   }
 
